@@ -1,0 +1,11 @@
+#bg{
+    background-image: url("../assets/404.png");
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+}
+
+.modal-switcher{
+    position: relative;
+    z-index: 250;
+}
