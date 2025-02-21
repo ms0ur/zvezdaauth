@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import EyeButtonComponent from './EyeButtonComponent.tsx';
 import './LoginModalComponent.css';
 import { object, string } from 'yup';
+import AxiosInstance from "../AxiosInstance.ts";
 
 const loginSchema = object({
     email: string()
@@ -24,8 +25,21 @@ export default function LoginModalComponent() {
 
     const [showPass, setShowPass] = useState(false);
 
-    const onSubmit = (data: any) => {
-        console.log("valid: ", data);
+    const onSubmit = async (data: any) => {
+        try {
+            const res = await AxiosInstance.post('/access/login', {
+                username: data.email,
+                password: data.password
+            });
+
+            if (res.status === 200) {
+                const { access_token, refresh_token } = res.data;
+                localStorage.setItem('access_token', access_token);
+                localStorage.setItem('refresh_token', refresh_token);
+            }
+        } catch (error) {
+            console.error('Error logging in:', error);
+        }
     };
 
     return (
