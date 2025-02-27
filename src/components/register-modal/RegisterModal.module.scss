@@ -1,4 +1,4 @@
-.ModalBackground {
+.modal-background {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -7,7 +7,7 @@
     background-color: rgba(51, 53, 63, 0.2);
     z-index: 99;
 }
-.ModalWindow{
+.modal-window{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -22,35 +22,35 @@
     gap: 32px;
     padding: 57px;
 }
-.ModalTitle{
+.modal-title{
     font-size: 24px;
     margin: 0;
 }
-.ModalGroupModal{
+.modal-group-modal{
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
-.ModalGroupInput{
+.modal-group-input{
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.ModalGroupMainButton{
+.modal-group-main-button{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.ModalInput{
+.modal-input{
     position: relative;
 }
 
-.ModalInputPole{
+.modal-input-pole{
     border: 1px solid #EAEAEA;
     border-radius: 10px;
     padding-left: 10px;
@@ -58,18 +58,18 @@
     width: 100%;
 }
 
-.ModalInputError{
+.modal-input-error{
     color: #FC0D1C;
     font-size: 12px;
 }
 
-.ModalInputEye{
+.modal-input-eye{
     position: absolute;
     right: 0;
     top: 10px;
 }
 
-.ModalMainButton{
+.modal-main-button{
     background: #FC0D1C;
     border-radius: 32px;
     border: 0;

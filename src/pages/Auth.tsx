@@ -1,61 +1,45 @@
 import './Auth.css'
-import RegisterModalComponent from "../components/RegisterModalComponent.tsx";
+import RegisterModal from "../components/register-modal/RegisterModal.tsx";
 import {useState} from "react";
-import LoginModalComponent from "../components/LoginModalComponent.tsx";
-import AccountInfoModalComponent from "../components/AccounInfoModalComponent.tsx";
-import AxiosInstance from "../AxiosInstance.ts";
+import {LoginModal} from "../components/";
+import {AccountInfoModal} from "../components/";
+import { api } from "../libs/api/AxiosInstance.ts";
+import { LOGOUT, REFRESH, GET_PROFILE, DELETE_USER } from "../libs/constants/api";
+import { storage, STORAGE_KEYS } from '../libs/storage';
 
 export default function Auth() {
     const logout = async () => {
-        const accessToken = localStorage.getItem('access_token');
+        const accessToken = storage.get(STORAGE_KEYS.ACCESS_TOKEN);
         if (!accessToken) return;
 
         try {
-            const res = await AxiosInstance.post(
-                '/access/logout',
+            const res = await api.post(
+                LOGOUT,
                 {},
                 { headers: { 'Authorization': `Bearer ${accessToken}` } }
             );
 
-            if (res.status === 200) {
-                localStorage.removeItem('access_token');
-                localStorage.removeItem('refresh_token');
-            }
+            storage.remove(STORAGE_KEYS.ACCESS_TOKEN);
+            storage.remove(STORAGE_KEYS.REFRESH_TOKEN);
         } catch (error: any) {
-            // If unauthorized, try to refresh token and retry logout.
-            if (error.response && error.response.status === 401) {
-                localStorage.removeItem('access_token');
-                const refreshToken = localStorage.getItem('refresh_token');
-                if (refreshToken) {
-                    const resRef = await AxiosInstance.post('/access/refresh', {
-                        refresh_token: refreshToken,
-                    });
-                    if (resRef.status === 200) {
-                        localStorage.setItem('access_token', resRef.data.access_token);
-                        await logout();
-                    }
-                }
-            } else {
-                console.error('Error during logout:', error);
-            }
+            console.error('Error during logout:', error);
         }
     };
 
     const remove = async () => {
-        const accessToken = localStorage.getItem('access_token');
+        const accessToken = storage.get(STORAGE_KEYS.ACCESS_TOKEN);
         if (!accessToken) return;
 
         try {
-            const { data: { email } } = await AxiosInstance.get('/access/profile', {
-                headers: { 'Authorization': `Bearer ${accessToken}` }
+            const { data: { email } } = await api.get(GET_PROFILE);
+
+            await api.delete(DELETE_USER, {
+                data: { email },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
 
-            await AxiosInstance.delete('/access/hard-delete-user', {
-                data: { email }
-            });
-
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('refresh_token');
+            storage.remove(STORAGE_KEYS.ACCESS_TOKEN);
+            storage.remove(STORAGE_KEYS.REFRESH_TOKEN);
             window.location.reload();
         } catch (error) {
             console.error('Error removing user:', error);
@@ -75,11 +59,11 @@ export default function Auth() {
             <div id="bg">
 
                 {activeModal == 'register' ? (
-                    <RegisterModalComponent />
+                    <RegisterModal />
                 ) : activeModal == 'login' ? (
-                    <h1><LoginModalComponent /></h1>
+                    <h1><LoginModal /></h1>
                 ): activeModal == 'profile' ? (
-                    <AccountInfoModalComponent />
+                    <AccountInfoModal />
                 ): (<h1>soon</h1>)}
             </div>
         </>
