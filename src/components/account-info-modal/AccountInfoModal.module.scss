@@ -1,81 +1,92 @@
-.ModalBackground {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(51, 53, 63, 0.2);
-    z-index: 99;
-}
-.ModalWindow{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 100;
-    background: #FBFBFB;
-    border-radius: 10px;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    padding: 57px;
-}
-.ModalTitle{
-    font-size: 24px;
-    margin: 0;
-}
-.ModalGroupModal{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-.ModalGroupInput{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
+@import '../../App.scss';
+.modal {
+    &-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(51, 53, 63, 0.2);
+        z-index: 99;
+    }
 
-.ModalGroupMainButton{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    &-window {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 100;
+        background: #fbfbfb;
+        border-radius: 10px;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        padding: 57px;
+    }
 
-.ModalInput{
-    position: relative;
-}
+    &-title {
+        @extend .rubik-700;
+        font-size: 24px;
+        margin: 0;
+    }
 
-.ModalInputPole{
-    border: 1px solid #EAEAEA;
-    border-radius: 10px;
-    padding-left: 10px;
-    height: 40px;
-    width: 100%;
-}
+    &-group {
+        &-modal {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
 
-.ModalInputError{
-    color: #FC0D1C;
-    font-size: 12px;
-}
+        &-input {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-.ModalInputEye{
-    position: absolute;
-    right: 0;
-    top: 10px;
-}
+        &-main-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 
-.ModalMainButton{
-    background: #FC0D1C;
-    border-radius: 32px;
-    border: 0;
-    padding: 10px;
-    text-align: center;
-    width: 250px;
-    font-size: 18px;
-    color: #FFF;
+    &-input {
+        position: relative;
+
+        &-pole {
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            padding-left: 10px;
+            height: 40px;
+            width: 100%;
+        }
+
+        &-error {
+            color: #fc0d1c;
+            font-size: 12px;
+        }
+
+        &-eye {
+            position: absolute;
+            right: 0;
+            top: 10px;
+        }
+    }
+
+    &-main-button {
+        @extend .rubik-400;
+        background: #fc0d1c;
+        border-radius: 32px;
+        border: 0;
+        padding: 10px;
+        text-align: center;
+        width: 250px;
+        font-size: 18px;
+        color: #fff;
+    }
 }

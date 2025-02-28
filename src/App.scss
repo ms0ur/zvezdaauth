@@ -1,5 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
+@font-face {
+  font-family: "Rubik";
+  src: url("./fonts/Rubik-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 400 700;
+  font-display: swap;
+  font-style: normal;
+  font-stretch: normal;
+  font-optical-sizing: auto;
+}
 .rubik-700 {
   font-family: "Rubik", serif;
   font-optical-sizing: auto;

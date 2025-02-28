@@ -1,10 +1,10 @@
-import './Auth.css'
+import './Auth.scss'
 import RegisterModal from "../components/register-modal/RegisterModal.tsx";
 import {useState} from "react";
 import {LoginModal} from "../components/";
 import {AccountInfoModal} from "../components/";
 import { api } from "../libs/api/AxiosInstance.ts";
-import { LOGOUT, REFRESH, GET_PROFILE, DELETE_USER } from "../libs/constants/api";
+import { LOGOUT, GET_PROFILE, DELETE_USER } from "../libs/constants/api";
 import { storage, STORAGE_KEYS } from '../libs/storage';
 
 export default function Auth() {

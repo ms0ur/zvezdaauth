@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './AccountInfoModal.module.scss';
-import { api } from "../../libs/api/AxiosInstance.ts";
-import { GET_PROFILE } from "../../libs/constants/api.ts";
+import { api } from "../../libs/api/AxiosInstance";
+import { GET_PROFILE } from "../../libs/constants/api";
 
 interface AccountInfoSuccessfulResponse {
     email: string;
@@ -30,10 +30,10 @@ export function AccountInfoModal() {
     }, []);
 
     return (
-        <div className={styles.ModalBackground}>
-            <div className={styles.ModalWindow}>
-                <h2 className={styles.ModalTitle}>Информация о профиле</h2>
-                <div className={styles.ModalGroupInput}>
+        <div className={styles["modal-background"]}>
+            <div className={styles["modal-window"]}>
+                <h2 className={styles["modal-title"]}>Информация о профиле</h2>
+                <div className={styles["modal-group-input"]}>
                     {data ? (
                         <>
                             <p>email: {data.email}</p>
