@@ -36,7 +36,7 @@ api.interceptors.response.use(
             if (refreshToken) {
                 try {
                     // Выполняем запрос на обновление токена
-                    const { data } = await axios.post(REFRESH, {
+                    const { data } = await api.post(REFRESH, {
                         refresh_token: refreshToken
                     });
 

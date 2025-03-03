@@ -20,6 +20,8 @@ export function AccountInfoModal() {
             const res = await api.get(GET_PROFILE);
 
             setData(res.data as AccountInfoSuccessfulResponse);
+
+            console.log(res);
         } catch (error: any) {
             console.error('Error getting profile:', error);
         }

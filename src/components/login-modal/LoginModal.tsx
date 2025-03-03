@@ -31,6 +31,7 @@ export function LoginModal() {
             });
 
             const { access_token, refresh_token } = res.data;
+            console.log(res);
             storage.set(STORAGE_KEYS.ACCESS_TOKEN, access_token);
             storage.set(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
         } catch (error) {

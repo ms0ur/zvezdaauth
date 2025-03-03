@@ -19,6 +19,8 @@ export default function Auth() {
                 { headers: { 'Authorization': `Bearer ${accessToken}` } }
             );
 
+            console.log(res);
+
             storage.remove(STORAGE_KEYS.ACCESS_TOKEN);
             storage.remove(STORAGE_KEYS.REFRESH_TOKEN);
         } catch (error: any) {
@@ -33,10 +35,12 @@ export default function Auth() {
         try {
             const { data: { email } } = await api.get(GET_PROFILE);
 
-            await api.delete(DELETE_USER, {
+            const res = await api.delete(DELETE_USER, {
                 data: { email },
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
+
+            console.log(res);
 
             storage.remove(STORAGE_KEYS.ACCESS_TOKEN);
             storage.remove(STORAGE_KEYS.REFRESH_TOKEN);
