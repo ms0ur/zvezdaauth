@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './AccountInfoModal.module.scss';
-import { api } from "../../libs/api/AxiosInstance";
+import { api } from "../../libs/api/axiosInstance.ts";
 import { GET_PROFILE } from "../../libs/constants/api";
 
 interface AccountInfoSuccessfulResponse {

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { EyeButton } from '../';
 import styles from './LoginModal.module.scss';
-import { api } from "../../libs/api/AxiosInstance";
+import { api } from "../../libs/api/axiosInstance.ts";
 import { LOGIN } from "../../libs/constants/api";
 import { loginSchema } from '../../libs/schemas/loginSchema';
 import { storage, STORAGE_KEYS } from '../../libs/storage';

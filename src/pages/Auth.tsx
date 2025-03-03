@@ -3,9 +3,10 @@ import RegisterModal from "../components/register-modal/RegisterModal.tsx";
 import {useState} from "react";
 import {LoginModal} from "../components/";
 import {AccountInfoModal} from "../components/";
-import { api } from "../libs/api/AxiosInstance.ts";
+import { api } from "../libs/api/axiosInstance.ts";
 import { LOGOUT, GET_PROFILE, DELETE_USER } from "../libs/constants/api";
 import { storage, STORAGE_KEYS } from '../libs/storage';
+import {Login2FAModal} from "../components/";
 
 export default function Auth() {
     const logout = async () => {
@@ -55,6 +56,7 @@ export default function Auth() {
         <>
             <div className="modal-switcher">
                 <button onClick={() => setActiveModal('login')}>Войти</button>
+                <button onClick={() => setActiveModal('2fa')}>2FA Вход</button>
                 <button onClick={() => setActiveModal('register')}>Регистрация</button>
                 <button onClick={() => setActiveModal('profile')}>Информация о профиле</button>
                 <button onClick={() => logout()}>Выйти</button>
@@ -65,9 +67,11 @@ export default function Auth() {
                 {activeModal == 'register' ? (
                     <RegisterModal />
                 ) : activeModal == 'login' ? (
-                    <h1><LoginModal /></h1>
+                    <LoginModal />
                 ): activeModal == 'profile' ? (
                     <AccountInfoModal />
+                ): activeModal == '2fa' ? (
+                    <Login2FAModal />
                 ): (<h1>soon</h1>)}
             </div>
         </>

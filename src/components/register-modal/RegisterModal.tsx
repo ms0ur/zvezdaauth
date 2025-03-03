@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { EyeButton } from '../';
 import styles from './RegisterModal.module.scss';
-import { api } from "../../libs/api/AxiosInstance";
+import { api } from "../../libs/api/axiosInstance.ts";
 import { REGISTER } from "../../libs/constants/api";
 import { registerSchema } from '../../libs/schemas/registerSchema';
 import { storage, STORAGE_KEYS } from '../../libs/storage';

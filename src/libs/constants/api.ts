@@ -4,6 +4,8 @@ export const MODIFY_API = 'backend/api/access/';
 // Endpoints
 export const GET_PROFILE = 'profile';
 export const LOGIN = 'login';
+export const LOGIN2FA = 'login-two-factor'
+export const AUTH = 'auth';
 export const REGISTER = 'register';
 export const LOGOUT = 'logout';
 export const REFRESH = 'refresh';
