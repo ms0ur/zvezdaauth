@@ -32,10 +32,10 @@ export function AccountInfoModal() {
     }, []);
 
     return (
-        <div className={styles["modal-background"]}>
-            <div className={styles["modal-window"]}>
-                <h2 className={styles["modal-title"]}>Информация о профиле</h2>
-                <div className={styles["modal-group-input"]}>
+        <div className={styles.modalBackground}>
+            <div className={styles.modalWindow}>
+                <h2 className={styles.modalTitle}>Информация о профиле</h2>
+                <div className={styles.modalGroupInput}>
                     {data ? (
                         <>
                             <p>email: {data.email}</p>

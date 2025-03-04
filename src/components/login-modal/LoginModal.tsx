@@ -40,42 +40,42 @@ export function LoginModal() {
     };
 
     return (
-        <div className={styles["modal-background"]}>
-            <form className={styles["modal-window"]} onSubmit={handleSubmit(onSubmit)}>
-                <h2 className={styles["modal-title"]}>Вход по почте</h2>
-                <div className={styles["modal-group-input"]}>
-                    <div className={styles["modal-input"]}>
+        <div className={styles.modalBackground}>
+            <form className={styles.modalWindow} onSubmit={handleSubmit(onSubmit)}>
+                <h2 className={styles.modalTitle}>Вход по почте</h2>
+                <div className={styles.modalGroupInput}>
+                    <div className={styles.modalInput}>
                         <input
                             {...register("email")}
-                            className={styles["modal-input-pole"]}
+                            className={styles.modalInputPole}
                             type="text"
                             placeholder="E-mail"
                         />
                         {errors.email && (
-                            <p className={styles["modal-input-error"]}>
+                            <p className={styles.modalInputError}>
                                 {errors.email.message}
                             </p>
                         )}
                     </div>
-                    <div className={styles["modal-input"]}>
+                    <div className={styles.modalInput}>
                         <input
                             {...register("password")}
-                            className={styles["modal-input-pole"]}
+                            className={styles.modalInputPole}
                             type={showPass ? "text" : "password"}
                             placeholder="Пароль"
                         />
-                        <div className={styles["modal-input-eye"]}>
+                        <div className={styles.modalInputEye}>
                             <EyeButton show={showPass} setShow={setShowPass} />
                         </div>
                         {errors.password && (
-                            <p className={styles["modal-input-error"]}>
+                            <p className={styles.modalInputError}>
                                 {errors.password.message}
                             </p>
                         )}
                     </div>
                 </div>
-                <div className={styles["modal-group-main-button"]}>
-                    <button className={styles["modal-main-button"]} type="submit">
+                <div>
+                    <button className={styles.modalMainButton} type="submit">
                         Войти
                     </button>
                 </div>

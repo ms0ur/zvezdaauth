@@ -1,6 +1,6 @@
 @import '../../App.scss';
 .modal {
-    &-background {
+    &Background {
         position: fixed;
         top: 0;
         left: 0;
@@ -10,7 +10,7 @@
         z-index: 99;
     }
 
-    &-window {
+    &Window {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -26,28 +26,28 @@
         padding: 57px;
     }
 
-    &-title {
+    &Title {
         @extend .rubik-700;
         font-size: 24px;
         margin: 0;
     }
 
-    &-group {
-        &-modal {
+    &Group {
+        &Modal {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 24px;
         }
 
-        &-input {
+        &Input {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
 
-        &-main-button {
+        &MainButton {
             width: 100%;
             display: flex;
             align-items: center;
@@ -55,10 +55,10 @@
         }
     }
 
-    &-input {
+    &Input {
         position: relative;
 
-        &-pole {
+        &Pole {
             border: 1px solid #eaeaea;
             border-radius: 10px;
             padding-left: 10px;
@@ -66,19 +66,19 @@
             width: 100%;
         }
 
-        &-error {
+        &Error {
             color: #fc0d1c;
             font-size: 12px;
         }
 
-        &-eye {
+        &Eye {
             position: absolute;
             right: 0;
             top: 10px;
         }
     }
 
-    &-main-button {
+    &MainButton {
         @extend .rubik-400;
         background: #fc0d1c;
         border-radius: 32px;

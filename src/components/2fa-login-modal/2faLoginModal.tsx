@@ -73,63 +73,63 @@ export function Login2FAModal() {
     return (
         <>
             {secondWindow2fa ? (
-                <div className={styles['modal-background']}>
-                    <form className={styles['modal-window']} onSubmit={codeHandleSubmit(onCodeSubmit)}>
-                        <h2 className={styles['modal-title']}>Введите код из E-Mail письма</h2>
-                        <div className={styles['modal-group-input']}>
-                            <div className={styles['modal-input']}>
-                                <p className={styles['modal-desc']}>На ваш email было отправлено письмо с кодом подтверждения. Введите его в поле ниже.</p>
+                <div className={styles.modalBackground}>
+                    <form className={styles.modalWindow} onSubmit={codeHandleSubmit(onCodeSubmit)}>
+                        <h2 className={styles.modalTitle}>Введите код из E-Mail письма</h2>
+                        <div className={styles.modalGroupInput}>
+                            <div className={styles.modalInput}>
+                                <p className={styles.modalDesc}>На ваш email было отправлено письмо с кодом подтверждения. Введите его в поле ниже.</p>
                                 <input
                                     {...codeRegister('code')}
-                                    className={styles['modal-input-pole']}
+                                    className={styles.modalInputPole}
                                     type="text"
                                     placeholder="Код подтверждения"
                                 />
                                 {codeErrors.code && (
-                                    <p className={styles['modal-input-error']}>{codeErrors.code.message}</p>
+                                    <p className={styles.modalInputError}>{codeErrors.code.message}</p>
                                 )}
                             </div>
                         </div>
-                        <div className={styles['modal-group-main-button']}>
-                            <button className={styles['modal-main-button']} type="submit">
+                        <div>
+                            <button className={styles.modalMainButton} type="submit">
                                 Подтвердить
                             </button>
                         </div>
                     </form>
                 </div>
             ) : (
-                <div className={styles['modal-background']}>
-                    <form className={styles['modal-window']} onSubmit={loginHandleSubmit(onLoginSubmit)}>
-                        <h2 className={styles['modal-title']}>Вход по почте</h2>
-                        <div className={styles['modal-group-input']}>
-                            <div className={styles['modal-input']}>
+                <div className={styles.modalBackground}>
+                    <form className={styles.modalWindow} onSubmit={loginHandleSubmit(onLoginSubmit)}>
+                        <h2 className={styles.modalTitle}>Вход по почте</h2>
+                        <div className={styles.modalGroupInput}>
+                            <div className={styles.modalInput}>
                                 <input
                                     {...loginRegister('email')}
-                                    className={styles['modal-input-pole']}
+                                    className={styles.modalInputPole}
                                     type="text"
                                     placeholder="E-mail"
                                 />
                                 {loginErrors.email && (
-                                    <p className={styles['modal-input-error']}>{loginErrors.email.message}</p>
+                                    <p className={styles.modalInputError}>{loginErrors.email.message}</p>
                                 )}
                             </div>
-                            <div className={styles['modal-input']}>
+                            <div className={styles.modalInput}>
                                 <input
                                     {...loginRegister('password')}
-                                    className={styles['modal-input-pole']}
+                                    className={styles.modalInputPole}
                                     type={showPass ? 'text' : 'password'}
                                     placeholder="Пароль"
                                 />
-                                <div className={styles['modal-input-eye']}>
+                                <div className={styles.modalInputEye}>
                                     <EyeButton show={showPass} setShow={setShowPass} />
                                 </div>
                                 {loginErrors.password && (
-                                    <p className={styles['modal-input-error']}>{loginErrors.password.message}</p>
+                                    <p className={styles.modalInputError}>{loginErrors.password.message}</p>
                                 )}
                             </div>
                         </div>
-                        <div className={styles['modal-group-main-button']}>
-                            <button className={styles['modal-main-button']} type="submit">
+                        <div>
+                            <button className={styles.modalMainButton} type="submit">
                                 Войти
                             </button>
                         </div>

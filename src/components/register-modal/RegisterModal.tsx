@@ -46,46 +46,46 @@ export default function RegisterModal() {
     };
 
     return (
-        <div className={styles["modal-background"]}>
-            <form className={styles["modal-window"]} onSubmit={handleSubmit(onSubmit)}>
-                <h2 className={styles["modal-title"]}>Регистрация по почте</h2>
-                <div className={styles["modal-group-input"]}>
-                    <div className={styles["modal-input"]}>
+        <div className={styles.modalBackground}>
+            <form className={styles.modalWindow} onSubmit={handleSubmit(onSubmit)}>
+                <h2 className={styles.modalTitle}>Регистрация по почте</h2>
+                <div className={styles.modalGroupInput}>
+                    <div className={styles.modalInput}>
                         <input
                             {...register("email")}
-                            className={styles["modal-input-pole"]}
+                            className={styles.modalInputPole}
                             type="email"
                             placeholder="E-mail"
                         />
-                        {errors.email && <p className={styles["modal-input-error"]}>{errors.email.message}</p>}
+                        {errors.email && <p className={styles.modalInputError}>{errors.email.message}</p>}
                     </div>
-                    <div className={styles["modal-input"]}>
+                    <div className={styles.modalInput}>
                         <input
                             {...register("password")}
-                            className={styles["modal-input-pole"]}
+                            className={styles.modalInputPole}
                             type={showPass ? "text" : "password"}
                             placeholder="Пароль"
                         />
-                        <div className={styles["modal-input-eye"]}>
+                        <div className={styles.modalInputEye}>
                             <EyeButton show={showPass} setShow={setShowPass} />
                         </div>
-                        {errors.password && <p className={styles["modal-input-error"]}>{errors.password.message}</p>}
+                        {errors.password && <p className={styles.modalInputError}>{errors.password.message}</p>}
                     </div>
-                    <div className={styles["modal-input"]}>
+                    <div className={styles.modalInput}>
                         <input
                             {...register("repeatPassword")}
-                            className={styles["modal-input-pole"]}
+                            className={styles.modalInputPole}
                             type={showRepeatPass ? "text" : "password"}
                             placeholder="Повторите пароль"
                         />
-                        <div className={styles["modal-input-eye"]}>
+                        <div className={styles.modalInputEye}>
                             <EyeButton show={showRepeatPass} setShow={setShowRepeatPass} />
                         </div>
-                        {errors.repeatPassword && <p className={styles["modal-input-error"]}>{errors.repeatPassword.message}</p>}
+                        {errors.repeatPassword && <p className={styles.modalInputError}>{errors.repeatPassword.message}</p>}
                     </div>
                 </div>
-                <div className={styles["modal-group-main-button"]}>
-                    <button className={styles["modal-main-button"]} type="submit">
+                <div>
+                    <button className={styles.modalMainButton} type="submit">
                         Зарегистрироваться
                     </button>
                 </div>
