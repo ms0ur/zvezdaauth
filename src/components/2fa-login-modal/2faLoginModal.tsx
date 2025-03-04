@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import {FormEvent, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './2faLoginModal.module.scss';
 import { api } from '../../libs/api/axiosInstance';
 import { AUTH, LOGIN2FA } from '../../libs/constants/api';
-import { storage, STORAGE_KEYS } from '../../libs/storage';
-import { authCodeSchema } from '../../libs/schemas/authCodeSchema';
+import storage from '../../libs/storage';
 import { loginSchema } from '../../libs/schemas/loginSchema';
 import { EyeButton } from '../eye-button/EyeButton';
 
@@ -23,14 +22,8 @@ export function Login2FAModal() {
         resolver: yupResolver(loginSchema)
     });
 
-    // useForm для кода подтверждения
-    const {
-        register: codeRegister,
-        handleSubmit: codeHandleSubmit,
-        formState: { errors: codeErrors }
-    } = useForm({
-        resolver: yupResolver(authCodeSchema)
-    });
+    const [codeError, setCodeError] = useState('');
+    const [code, setCode] = useState('');
 
     const onLoginSubmit = async (data: any) => {
         try {
@@ -55,38 +48,53 @@ export function Login2FAModal() {
         }
     };
 
-    const onCodeSubmit = async (data: any) => {
+    const onCodeSubmit = async (e: FormEvent) => {
+        e.preventDefault()
+        setCodeError('')
+        if (code.length < 1) {
+            setCodeError('Введите код из письма')
+            return
+        }
         try {
             const res = await api.post(AUTH, {
                 authKey: authKey,
-                authCode: data.code
+                authCode: code
             });
-            const { access_token, refresh_token } = res.data;
             console.log(res);
-            storage.set(STORAGE_KEYS.ACCESS_TOKEN, access_token);
-            storage.set(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
+            storage.setTokens(res.data)
         } catch (error) {
             console.error('Error logging in:', error);
+            setCodeError('Неверный код')
         }
     };
+
+    const changeCode=(e:FormEvent<HTMLInputElement>)=> {
+        try{
+            setCode((e.target as HTMLInputElement).value);
+            setCodeError('')
+        } catch (error) {
+            console.error('error updating codeset:', error);
+        }
+
+    }
 
     return (
         <>
             {secondWindow2fa ? (
                 <div className={styles.modalBackground}>
-                    <form className={styles.modalWindow} onSubmit={codeHandleSubmit(onCodeSubmit)}>
+                    <form className={styles.modalWindow} onSubmit={onCodeSubmit}>
                         <h2 className={styles.modalTitle}>Введите код из E-Mail письма</h2>
                         <div className={styles.modalGroupInput}>
                             <div className={styles.modalInput}>
                                 <p className={styles.modalDesc}>На ваш email было отправлено письмо с кодом подтверждения. Введите его в поле ниже.</p>
                                 <input
-                                    {...codeRegister('code')}
                                     className={styles.modalInputPole}
                                     type="text"
                                     placeholder="Код подтверждения"
+                                    onChange={changeCode}
                                 />
-                                {codeErrors.code && (
-                                    <p className={styles.modalInputError}>{codeErrors.code.message}</p>
+                                {codeError.length > 0 && (
+                                    <p className={styles.modalInputError}>{codeError}</p>
                                 )}
                             </div>
                         </div>

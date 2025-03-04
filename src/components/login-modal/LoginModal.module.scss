@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../assets/styles/style.scss';
 .modal {
     &Background {
         position: fixed;
@@ -62,7 +62,7 @@
 
         &Eye{
             position: absolute;
-            right: 0;
+            right: 10px;
             top: 10px;
         }
     }

@@ -1,5 +1,5 @@
 
-import './App.scss'
+import './assets/styles/style.scss'
 import Auth from './pages/Auth.tsx'
 
 

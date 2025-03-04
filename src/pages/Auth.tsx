@@ -5,12 +5,12 @@ import {LoginModal} from "../components/";
 import {AccountInfoModal} from "../components/";
 import { api } from "../libs/api/axiosInstance.ts";
 import { LOGOUT, GET_PROFILE, DELETE_USER } from "../libs/constants/api";
-import { storage, STORAGE_KEYS } from '../libs/storage';
+import storage from '../libs/storage';
 import {Login2FAModal} from "../components/";
 
 export default function Auth() {
     const logout = async () => {
-        const accessToken = storage.get(STORAGE_KEYS.ACCESS_TOKEN);
+        const accessToken = storage.getTokens().access_token;
         if (!accessToken) return;
 
         try {
@@ -22,15 +22,14 @@ export default function Auth() {
 
             console.log(res);
 
-            storage.remove(STORAGE_KEYS.ACCESS_TOKEN);
-            storage.remove(STORAGE_KEYS.REFRESH_TOKEN);
+            storage.removeTokens();
         } catch (error: any) {
             console.error('Error during logout:', error);
         }
     };
 
     const remove = async () => {
-        const accessToken = storage.get(STORAGE_KEYS.ACCESS_TOKEN);
+        const accessToken = storage.getTokens().access_token;
         if (!accessToken) return;
 
         try {
@@ -43,8 +42,7 @@ export default function Auth() {
 
             console.log(res);
 
-            storage.remove(STORAGE_KEYS.ACCESS_TOKEN);
-            storage.remove(STORAGE_KEYS.REFRESH_TOKEN);
+            storage.removeTokens();
             window.location.reload();
         } catch (error) {
             console.error('Error removing user:', error);
@@ -55,12 +53,12 @@ export default function Auth() {
     return (
         <>
             <div className="modal-switcher">
-                <button onClick={() => setActiveModal('login')}>Войти</button>
-                <button onClick={() => setActiveModal('2fa')}>2FA Вход</button>
-                <button onClick={() => setActiveModal('register')}>Регистрация</button>
-                <button onClick={() => setActiveModal('profile')}>Информация о профиле</button>
-                <button onClick={() => logout()}>Выйти</button>
-                <button onClick={() => remove()}>Удалить Аккаунт</button>
+                <button className="modal-button" onClick={() => setActiveModal('login')}>Войти</button>
+                <button className="modal-button" onClick={() => setActiveModal('2fa')}>2FA Вход</button>
+                <button className="modal-button" onClick={() => setActiveModal('register')}>Регистрация</button>
+                <button className="modal-button" onClick={() => setActiveModal('profile')}>Информация о профиле</button>
+                <button className="modal-button" onClick={() => logout()}>Выйти</button>
+                <button className="modal-button" onClick={() => remove()}>Удалить Аккаунт</button>
             </div>
             <div id="bg">
 
@@ -72,7 +70,7 @@ export default function Auth() {
                     <AccountInfoModal />
                 ): activeModal == '2fa' ? (
                     <Login2FAModal />
-                ): (<h1>soon</h1>)}
+                ): (<h1>e</h1>)}
             </div>
         </>
     )

@@ -6,7 +6,7 @@ import styles from './LoginModal.module.scss';
 import { api } from "../../libs/api/axiosInstance.ts";
 import { LOGIN } from "../../libs/constants/api";
 import { loginSchema } from '../../libs/schemas/loginSchema';
-import { storage, STORAGE_KEYS } from '../../libs/storage';
+import storage from '../../libs/storage';
 
 export function LoginModal() {
     const {
@@ -30,10 +30,8 @@ export function LoginModal() {
                 }
             });
 
-            const { access_token, refresh_token } = res.data;
             console.log(res);
-            storage.set(STORAGE_KEYS.ACCESS_TOKEN, access_token);
-            storage.set(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
+            storage.setTokens(res.data)
         } catch (error) {
             console.error('Error logging in:', error);
         }

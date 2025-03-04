@@ -6,18 +6,12 @@ import styles from './RegisterModal.module.scss';
 import { api } from "../../libs/api/axiosInstance.ts";
 import { REGISTER } from "../../libs/constants/api";
 import { registerSchema } from '../../libs/schemas/registerSchema';
-import { storage, STORAGE_KEYS } from '../../libs/storage';
+import storage from '../../libs/storage';
 
 interface RegisterFormValues {
     email: string;
     password: string;
     repeatPassword: string;
-}
-
-interface RegisterSuccessfulResponse {
-    access_token: string;
-    token_type: string;
-    refresh_token: string;
 }
 
 export default function RegisterModal() {
@@ -36,10 +30,8 @@ export default function RegisterModal() {
 
         try {
             const res = await api.post(REGISTER, preparedData);
-            const { access_token, refresh_token } = res.data as RegisterSuccessfulResponse;
             console.log(res);
-            storage.set(STORAGE_KEYS.ACCESS_TOKEN, access_token);
-            storage.set(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
+            storage.setTokens(res.data)
         } catch (error) {
             console.error("Ошибка при регистрации:", error);
         }

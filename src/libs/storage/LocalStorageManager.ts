@@ -1,44 +1,29 @@
-/**
- * Класс для управления данными в localStorage
- */
+import {TokenSuccessfulResponse} from "../types/types.ts";
+
+
 export class LocalStorageManager {
 
-    /**
-     * Сохраняет значение в localStorage
-     */
-    set<T>(key: string, value: T): void {
-        try {
-            const serializedValue = JSON.stringify(value);
-            localStorage.setItem(key, serializedValue);
-        } catch (error) {
-            console.error('Ошибка при сохранении в localStorage:', error);
-        }
+    private access = 'access_token';
+    private refresh = 'refresh_token';
+    setTokens(data: TokenSuccessfulResponse) {
+        localStorage.setItem(this.access, data.access_token);
+        localStorage.setItem(this.refresh, data.refresh_token);
     }
 
-    /**
-     * Получает значение из localStorage
-     */
-    get<T>(key: string, defaultValue: T | null = null): T | null {
-        try {
-            const item = localStorage.getItem(key);
-            return item ? JSON.parse(item) : defaultValue;
-        } catch (error) {
-            console.error('Ошибка при получении из localStorage:', error);
-            return defaultValue;
-        }
+    getTokens() {
+        return {
+            access_token: localStorage.getItem(this.access),
+            refresh_token: localStorage.getItem(this.refresh)
+        };
     }
 
-    /**
-     * Удаляет значение из localStorage
-     */
-    remove(key: string): void {
-        localStorage.removeItem(key);
+    removeTokens() {
+        localStorage.removeItem(this.access);
+        localStorage.removeItem(this.refresh);
     }
 
-    /**
-     * Проверяет существование ключа в localStorage
-     */
-    has(key: string): boolean {
-        return localStorage.getItem(key) !== null;
+    updateTokens(data: TokenSuccessfulResponse) {
+        localStorage.setItem(this.access, data.access_token);
+        localStorage.setItem(this.refresh, data.refresh_token);
     }
 }
