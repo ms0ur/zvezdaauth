@@ -1,7 +1,7 @@
 import styles from './EyeButton.module.scss'
 
-import eyeButton from '../../assets/eye.svg'
-import eyeSlashButton from '../../assets/eye-slash.svg'
+import eyeButton from '../../assets/img/eye.svg'
+import eyeSlashButton from '../../assets/img/eye-slash.svg'
 
 interface EyeButtonComponentProps {
     show: boolean;
