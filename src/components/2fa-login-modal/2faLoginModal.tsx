@@ -13,11 +13,10 @@ export function Login2FAModal() {
     const [showPass, setShowPass] = useState(false);
     const [authKey, setAuthKey] = useState('');
 
-    // useForm для логина (email, password)
     const {
-        register: loginRegister,
-        handleSubmit: loginHandleSubmit,
-        formState: { errors: loginErrors }
+        register,
+        handleSubmit,
+        formState: { errors }
     } = useForm({
         resolver: yupResolver(loginSchema)
     });
@@ -107,23 +106,23 @@ export function Login2FAModal() {
                 </div>
             ) : (
                 <div className={styles.modalBackground}>
-                    <form className={styles.modalWindow} onSubmit={loginHandleSubmit(onLoginSubmit)}>
+                    <form className={styles.modalWindow} onSubmit={handleSubmit(onLoginSubmit)}>
                         <h2 className={styles.modalTitle}>Вход по почте</h2>
                         <div className={styles.modalGroupInput}>
                             <div className={styles.modalInput}>
                                 <input
-                                    {...loginRegister('email')}
+                                    {...register('email')}
                                     className={styles.modalInputPole}
                                     type="text"
                                     placeholder="E-mail"
                                 />
-                                {loginErrors.email && (
-                                    <p className={styles.modalInputError}>{loginErrors.email.message}</p>
+                                {errors.email && (
+                                    <p className={styles.modalInputError}>{errors.email.message}</p>
                                 )}
                             </div>
                             <div className={styles.modalInput}>
                                 <input
-                                    {...loginRegister('password')}
+                                    {...register('password')}
                                     className={styles.modalInputPole}
                                     type={showPass ? 'text' : 'password'}
                                     placeholder="Пароль"
@@ -131,8 +130,8 @@ export function Login2FAModal() {
                                 <div className={styles.modalInputEye}>
                                     <EyeButton show={showPass} setShow={setShowPass} />
                                 </div>
-                                {loginErrors.password && (
-                                    <p className={styles.modalInputError}>{loginErrors.password.message}</p>
+                                {errors.password && (
+                                    <p className={styles.modalInputError}>{errors.password.message}</p>
                                 )}
                             </div>
                         </div>
